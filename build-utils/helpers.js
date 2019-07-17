@@ -4,7 +4,7 @@ const path = require('path');
  * @param {string} folderPath - folder's path
  * @return {string}
  */
-exports.setupPath = (folderPath) => path.esolve(__dirname, `${folderPath}`);
+exports.setupPath = (folderPath) => path.resolve(__dirname, `${folderPath}`);
 
 /**
  * sets the configuration paths
@@ -29,5 +29,5 @@ exports.setupCommonConfig = () => {
 exports.productionPath = () => {
   let pathSetup = '../dist';
 
-  return resolve(__dirname, pathSetup);
+  return path.resolve(__dirname, pathSetup);
 };
