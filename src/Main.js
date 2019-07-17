@@ -1,21 +1,29 @@
 // @flow strict
 import React from 'react';
 import ReactDom from 'react-dom';
+// $FlowIgnore
+import ApolloClient from 'apollo-boost';
+
+import { ApolloProvider } from 'react-apollo';
 /**
  * @link https://www.npmjs.com/package/intersection-observer
  * Require the polyfill before requiring any other modules. 
  */
 import 'intersection-observer';
 
+import { App } from '@/components/App';
+
 // import main CSS styles
 import './assets/scss/styles.scss';
 
-import { App } from '@/components/App';
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+});
 
 const AppWrapper = () => (
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>
+  </ApolloProvider>
 );
 
 const app = document.querySelector('#app');
