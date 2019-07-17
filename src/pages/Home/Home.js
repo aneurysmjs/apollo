@@ -1,22 +1,15 @@
 // @flow strict
 import React from 'react';
 import { Query } from 'react-apollo';
-// $FlowIgnore
-import ggl from 'graphql-tag';
+
+import Home_Query from './home.query';
 
 import './Home.scss';
 
 const Home = () => (
   <section className="home">
     <Query
-      query={ggl`
-        {
-          recipes {
-            id
-            title
-          }
-        }
-      `}
+      query={Home_Query}
     >
       {({data, loading, error }) => {
         if (loading) return <p>Loading...</p>;
