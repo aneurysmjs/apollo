@@ -9,7 +9,7 @@ type PropTypes = {
 };
 
 const Layout = ({ children }: PropTypes) => (
-  <main>
+  <main className="layout">
     { children }
   </main>
 );

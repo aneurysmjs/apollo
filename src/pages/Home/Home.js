@@ -4,6 +4,8 @@ import { Query } from 'react-apollo';
 // $FlowIgnore
 import ggl from 'graphql-tag';
 
+import './Home.scss';
+
 const Home = () => (
   <section className="home">
     <Query
