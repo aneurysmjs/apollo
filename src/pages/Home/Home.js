@@ -1,30 +1,44 @@
 // @flow strict
 import React from 'react';
-import { ApolloConsumer } from 'react-apollo';
+import { Query } from 'react-apollo';
 // $FlowIgnore
 import ggl from 'graphql-tag';
 
 const Home = () => (
   <section className="home">
-    <ApolloConsumer>
-      {client => {
-        client
-          .query({
-            query: ggl`
-              {
-                recipes {
-                  id
-                  title
-                }
-              }
-            `
-          })
-          .then(result => {
-            console.log('result', result);
-          });
+    <Query
+      query={ggl`
+        {
+          recipes {
+            id
+            title
+          }
+        }
+      `}
+    >
+      {({data, loading, error }) => {
+        if (loading) return <p>Loading...</p>;
+        if (error) return <p className="error">Something went wrong</p>;
+
+        return (
+          <div className="d-flex justify-content-center">
+            <div style={ { width: '24rem' }}>
+              <ul className="list-group">
+                {data.recipes.map(({ id, title }) =>
+                  <li
+                    className="list-group-item"
+                    key={id}
+                  >
+                    {title}
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+          
+        );
       }}
-    </ApolloConsumer>
-    Apollo
+    </Query>
   </section>
 );
 
